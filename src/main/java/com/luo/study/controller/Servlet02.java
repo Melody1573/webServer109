@@ -1,6 +1,6 @@
-package com.luo.s1212.controller;
+package com.luo.study.controller;
 
-import com.luo.s1212.util.JDBCConn;
+import com.luo.study.util.JDBCConn;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.util.Properties;
 
 @WebServlet(name = "Servlet02", urlPatterns = "/Servlet02")
 public class Servlet02 extends HttpServlet {

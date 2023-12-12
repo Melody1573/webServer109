@@ -1,4 +1,4 @@
-package com.luo.s1212.controller;
+package com.luo.study.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

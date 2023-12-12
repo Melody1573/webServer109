@@ -1,4 +1,4 @@
-package com.luo.s1212.util;
+package com.luo.study.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
