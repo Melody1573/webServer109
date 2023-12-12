@@ -1,0 +1,21 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!--2023年12月11日 1-1-->
+  <!--<servlet>-->
+  <!--  &lt;!&ndash;servlet名称&ndash;&gt;-->
+  <!--  <servlet-name>FirstServletName</servlet-name>-->
+  <!--  &lt;!&ndash;servlet类&ndash;&gt;-->
+  <!--  <servlet-class>com.luo.s1211.controller.FirstServlet</servlet-class>-->
+  <!--</servlet>-->
+  <!--<servlet-mapping>-->
+  <!--  &lt;!&ndash;servlet名称&ndash;&gt;-->
+  <!--  <servlet-name>FirstServletName</servlet-name>-->
+  <!--  &lt;!&ndash;servlet浏览器地址&ndash;&gt;-->
+  <!--  <url-pattern>/FirstServlet123</url-pattern>-->
+  <!--</servlet-mapping>-->
+</web-app>
