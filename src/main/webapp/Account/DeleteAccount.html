@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>销户</title>
+</head>
+<body>
+<h2>销户</h2>
+<form action="/web/AccountServlet" method="post" enctype="application/x-www-form-urlencoded">
+    <table border="1">
+        <tr>
+            <td>账号：</td>
+            <td><input type="text" name="no"></td>
+        </tr>
+        <input type="hidden" value="R" name="type">
+        <tr>
+            <td colspan="2"><input type="submit" name="销户"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>存款</title>
+</head>
+<body>
+<h2>存款</h2>
+<form action="/web/AccountServlet" method="post" enctype="application/x-www-form-urlencoded">
+    <table border="1">
+        <tr>
+            <td>账号：</td>
+            <td><input type="text" name="no"></td>
+        </tr>
+        <tr>
+            <td>金额：</td>
+            <td><input type="number" name="amount"></td>
+        </tr>
+        <input type="hidden" value="D" name="type">
+        <tr>
+            <td colspan="2"><input type="submit" name="存款"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

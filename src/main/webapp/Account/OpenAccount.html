@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--<meta charset="GBK">-->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>开户</title>
+</head>
+<body>
+<form action="/web/AccountServlet" method="post" enctype="application/x-www-form-urlencoded">
+    <table border="1">
+        <tr>
+            <td>用户姓名：</td>
+            <td><input type="text" name="userName"></td>
+        </tr>
+        <tr>
+            <td>账户类型：</td>
+            <td>基本用户:<input type="radio" name="accountType" value="1"></td>
+            <td>一般用户:<input type="radio" name="accountType" value="2"></td>
+        </tr>
+        <tr>
+            <td>存款类型：</td>
+            <td>活期<input type="radio" name="depositType" value="1"></td>
+            <td>定期一年<input type="radio" name="depositType" value="2"></td>
+            <td>定期五年<input type="radio" name="depositType" value="3"></td>
+        </tr>
+        <input type="hidden" value="O" name="type">
+        <tr><td colspan="4"><input type="submit" name="开户"></td></tr>
+    </table>
+</form>
+</body>
+</html>
