@@ -3,9 +3,6 @@ package com.luo.study.service;
 import com.luo.study.dao.AccountDao;
 import com.luo.study.model.Account;
 import com.luo.study.model.AccountVO;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import java.sql.ResultSet;
 
 /**
  * 实现账户维护接口
