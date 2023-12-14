@@ -1,6 +1,7 @@
 package com.luo.study.dao;
 
 import com.luo.study.model.Account;
+import com.luo.study.model.AccountUser;
 import com.luo.study.model.AccountVO;
 import com.luo.study.util.JDBCConn;
 
@@ -46,7 +47,7 @@ public class AccountDao {
             pst.setBigDecimal(4, account.getBalance());
             pst.setString(5, account.getCreateTime());
             pst.setString(6, account.getUserName());
-            //交由数据库执行SQL语句
+            //5.交由数据库执行SQL语句
             int rows = pst.executeUpdate();
             //关闭相关链接
             pst.close();
@@ -135,7 +136,7 @@ public class AccountDao {
             String delSql = "DELETE FROM account " +
                     "WHERE no = ?";
             PreparedStatement pst = conn.prepareStatement(delSql);
-            pst.setString(1,no);
+            pst.setString(1, no);
             int rows = pst.executeUpdate();
             return rows;
         } catch (Exception e) {
@@ -143,4 +144,40 @@ public class AccountDao {
         }
         return 0;
     }
+
+    /**
+     * 5.登录方法
+     * 入参：username password
+     * 出参：accountUser
+     */
+    public AccountUser loginAccount(String userName, String passWord) {
+        try {
+            if (conn.isClosed()) {
+                conn = JDBCConn.getJdbcConn();
+            }
+            String loginSql = "SELECT * " +
+                    "FROM accountinfo " +
+                    "WHERE user_name = ? AND password = ?";
+            PreparedStatement pst = conn.prepareStatement(loginSql);
+            pst.setString(1, userName);
+            pst.setString(2, passWord);
+            ResultSet resultSet = pst.executeQuery();
+
+            AccountUser accountUser = new AccountUser();
+            if (resultSet.next()) {
+                accountUser.setId(resultSet.getInt("id"));
+                accountUser.setUserName(resultSet.getString("user_name"));
+                accountUser.setPassWord(resultSet.getString("password"));
+            } else {
+                return null;
+            }
+            pst.close();
+            conn.close();
+            return accountUser;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
+

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -48,26 +49,31 @@ public class AccountServlet extends HttpServlet {
             }
         } else if ("O".equals(type)) {
             //如果类型是O则走开户
-            Account account = setAccount(req);
-            int rows = accountService.openAccount(account);
-            if (rows > 0) {
-                pw.write("开户成功");
-                //将值传给查询
-                // req.setAttribute("no",account.getNo());
-                // req.getRequestDispatcher("/queryAccounts").forward(req,resp);
-
-                String no = account.getNo();
-                Account account1 = accountService.selAccount(no);
-                //输出对象的内容
-                pw.write("<p>id: " + account1.getId() + "</p>");
-                pw.write("<p>账号: " + account1.getNo() + "</p>");
-                pw.write("<p>用户名: " + account1.getUserName() + "</p>");
-                pw.write("<p>余额: " + account1.getBalance() + "</p>");
-                pw.write("<p>用户类型: " + (account1.getAccountType().equals("1") ? "基本用户" : "一般用户") + "</p>");
-                pw.write("<p>存款类型: " + (account1.getDepositType().equals("1") ? "活期" : account1.getDepositType().equals("2") ? "定期一年" : "定期五年") + "</p>");
-                pw.write("<p>创建时间: " + account1.getCreateTime() + "</p>");
+            //7.提交开户信息后判断Session是否过期
+            HttpSession session = req.getSession();
+            if (session.isNew()) {
+                //8.跳转到登录界面
+                resp.sendRedirect(req.getContextPath() + "/Account/LoginAccount.html");
             } else {
-                pw.write("开户失败");
+                //9.进行开户
+                Account account = setAccount(req);
+                account.setUserName((String) session.getAttribute("userName"));
+                int rows = accountService.openAccount(account);
+                if (rows > 0) {
+                    pw.write("开户成功");
+                    String no = account.getNo();
+                    Account account1 = accountService.selAccount(no);
+                    //输出对象的内容
+                    pw.write("<p>id: " + account1.getId() + "</p>");
+                    pw.write("<p>账号: " + account1.getNo() + "</p>");
+                    pw.write("<p>用户名: " + account1.getUserName() + "</p>");
+                    pw.write("<p>余额: " + account1.getBalance() + "</p>");
+                    pw.write("<p>用户类型: " + (account1.getAccountType().equals("1") ? "基本用户" : "一般用户") + "</p>");
+                    pw.write("<p>存款类型: " + (account1.getDepositType().equals("1") ? "活期" : account1.getDepositType().equals("2") ? "定期一年" : "定期五年") + "</p>");
+                    pw.write("<p>创建时间: " + account1.getCreateTime() + "</p>");
+                } else {
+                    pw.write("开户失败");
+                }
             }
         } else if ("R".equals(type)) {
             //如果是R则执行销户操作

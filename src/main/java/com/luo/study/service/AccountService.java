@@ -1,6 +1,7 @@
 package com.luo.study.service;
 
 import com.luo.study.model.Account;
+import com.luo.study.model.AccountUser;
 import com.luo.study.model.AccountVO;
 
 /**
@@ -23,4 +24,8 @@ public interface AccountService {
      * 销户接口
      */
     public int deleteAccount(String no);
+    /**
+     * 登录接口
+     */
+    public AccountUser loginAccount(String userName,String passWord);
 }

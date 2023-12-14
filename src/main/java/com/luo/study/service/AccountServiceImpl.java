@@ -2,6 +2,7 @@ package com.luo.study.service;
 
 import com.luo.study.dao.AccountDao;
 import com.luo.study.model.Account;
+import com.luo.study.model.AccountUser;
 import com.luo.study.model.AccountVO;
 
 /**
@@ -36,5 +37,11 @@ public class AccountServiceImpl implements AccountService {
         //调用数据层的销户方法
         int rows = accountDao.deleteAccount(no);
         return rows;
+    }
+
+    @Override
+    public AccountUser loginAccount(final String userName, final String passWord) {
+        AccountUser accountUser = accountDao.loginAccount(userName, passWord);
+        return accountUser;
     }
 }
